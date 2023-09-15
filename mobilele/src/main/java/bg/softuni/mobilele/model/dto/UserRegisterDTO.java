@@ -6,7 +6,7 @@ public class UserRegisterDTO {
     private String firstName;
     private String lastName;
     private String password;
-    private String  confirmPassword;
+    private String confirmPassword;
 
     public String getFirstName() {
         return firstName;
