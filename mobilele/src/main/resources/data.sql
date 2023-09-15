@@ -1,0 +1,2 @@
+INSERT INTO users (id, email, first_name, last_name, image_url, is_active, password)
+VALUES (1, 'borislavn441@gmail.com','Bobkata', 'Nikolov', null, 1, '15bde5c1b431951bd26e819c0cf5e55088c1d96f25b5fbc8ca31fc5a0f0d99931f31b1e96121021b');
