@@ -1,6 +1,5 @@
 package bg.softuni.mobilele.web;
 
-import bg.softuni.mobilele.model.dto.UserLoginDTO;
 import bg.softuni.mobilele.model.dto.UserRegisterDTO;
 import bg.softuni.mobilele.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -13,32 +12,32 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/users")
-public class UserController {
+public class UserRegistrationController {
 
     private UserService userService;
 
-    public UserController(UserService userService) {
+    public UserRegistrationController(UserService userService) {
+        this.userService = userService;
         this.userService = userService;
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "auth-login";
+    @GetMapping("/register")
+    public String register() {
+        return "auth-register";
     }
 
-    @GetMapping("/logout")
-    public String logout() {
-        userService.logout();
+    @PostMapping("/register")
+    public String register(@Valid UserRegisterDTO userRegisterDTO,
+                           BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+
+            return "redirect:/users/register";
+
+        }
+        userService.registerAndLogin(userRegisterDTO);
         return "redirect:/";
     }
-
-    @PostMapping("/login")
-    public String login(UserLoginDTO userLoginDTO) {
-        userService.login(userLoginDTO);
-        return "redirect:/";
-    }
-
-
 
 
 }

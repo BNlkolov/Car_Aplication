@@ -23,7 +23,7 @@ public class CurrentUser {
         return loggedIn;
     }
 
-    public boolean isAnonymous(){
+    public boolean isAnonymous() {
         return !isLoggedIn();
     }
 
@@ -31,7 +31,8 @@ public class CurrentUser {
         this.loggedIn = loggedIn;
         return this;
     }
-    public  void  clear(){
+
+    public void clear() {
         loggedIn = false;
         name = null;
     }
