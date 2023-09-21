@@ -3,10 +3,12 @@ package bg.softuni.mobilele.service;
 import bg.softuni.mobilele.model.dto.UserLoginDTO;
 import bg.softuni.mobilele.model.dto.UserRegisterDTO;
 import bg.softuni.mobilele.model.entity.UserEntity;
+import bg.softuni.mobilele.model.mapper.UserMapper;
 import bg.softuni.mobilele.repository.UserRepository;
 import bg.softuni.mobilele.user.CurrentUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,28 +21,33 @@ public class UserService {
     private UserRepository userRepository;
     private CurrentUser currentUser;
     private PasswordEncoder passwordEncoder;
+    private UserMapper userMapper;
 
     public UserService(UserRepository userRepository,
                        CurrentUser currentUser,
-                       PasswordEncoder passwordEncoder) {
+                       PasswordEncoder passwordEncoder,
+                       UserMapper userMapper) {
         this.userRepository = userRepository;
         this.currentUser = currentUser;
         this.passwordEncoder = passwordEncoder;
-    }
-
-    public void registerAndLogin(UserRegisterDTO userRegisterDTO) {
-        UserEntity newUser =
-                new UserEntity().
-                        setActive(true).
-                        setEmail(userRegisterDTO.getEmail()).
-                        setFirstName(userRegisterDTO.getFirstName()).
-                        setLastName(userRegisterDTO.getLastName()).
-                        setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
-
-        newUser = userRepository.save(newUser);
-        login(newUser);
+        this.userMapper = userMapper;
 
     }
+
+    public boolean registerAndLogin(UserRegisterDTO userRegisterDTO) {
+
+        UserEntity newUser = userMapper.userDtoUserEntity(userRegisterDTO);
+        newUser.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
+
+        try {
+            this.userRepository.save(newUser);
+            login(newUser);
+            return true;
+        } catch (DataIntegrityViolationException e) {
+            return false;
+        }
+    }
+
 
     public boolean login(UserLoginDTO loginDTO) {
         Optional<UserEntity> userOpt = userRepository.
