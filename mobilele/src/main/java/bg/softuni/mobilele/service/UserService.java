@@ -34,18 +34,15 @@ public class UserService {
 
     }
 
-    public boolean registerAndLogin(UserRegisterDTO userRegisterDTO) {
+    public void registerAndLogin(UserRegisterDTO userRegisterDTO) {
 
         UserEntity newUser = userMapper.userDtoUserEntity(userRegisterDTO);
         newUser.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
 
-        try {
-            this.userRepository.save(newUser);
-            login(newUser);
-            return true;
-        } catch (DataIntegrityViolationException e) {
-            return false;
-        }
+
+        this.userRepository.save(newUser);
+        login(newUser);
+
     }
 
 
