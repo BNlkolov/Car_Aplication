@@ -9,15 +9,17 @@ public class ModelDTO {
         return id;
     }
 
-    public void setId(long id) {
+    public ModelDTO setId(long id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public ModelDTO setName(String name) {
         this.name = name;
+        return this;
     }
 }

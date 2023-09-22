@@ -5,14 +5,18 @@ import java.util.List;
 
 public class BrandDTO {
 
+    private String name;
     private List<ModelDTO> models = new ArrayList<>();
+
+
 
     public List<ModelDTO> getModels() {
         return models;
     }
 
-    public void setModels(List<ModelDTO> models) {
+    public BrandDTO setModels(List<ModelDTO> models) {
         this.models = models;
+        return this;
     }
 
     public BrandDTO addModel(ModelDTO model){
@@ -20,6 +24,15 @@ public class BrandDTO {
             models = new ArrayList<>();
         }
         this.models.add(model);
+        return this;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public BrandDTO setName(String name) {
+        this.name = name;
         return this;
     }
 }
