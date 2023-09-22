@@ -1,2 +1,13 @@
 INSERT INTO users (id, email, first_name, last_name, image_url, is_active, password)
 VALUES (1, 'test123@gmail.com','Test', 'TestTest', null, 1, '15bde5c1b431951bd26e819c0cf5e55088c1d96f25b5fbc8ca31fc5a0f0d99931f31b1e96121021b');
+
+
+INSERT INTO brands(id,name)
+VALUES  (1,'Ford'),
+        (2,'Toyota');
+
+        INSERT INTO models(id,name,category,start_year,end_year,brand_id,image_url)
+        VALUES
+        (1,'Fiesta','CAR',1976,null,1,'https://www.auto-data.net/images/f110/Ford-Fiesta-I-Mk1.jpg'),
+        (2,'Mustang','CAR',1967,2023,1,'https://www.tradeclassics.com/wp-content/uploads/2022/03/1967-Ford-Mustang-402.jpg'),
+        (3,'Old','CAR',1970,null,2,'https://hips.hearstapps.com/hmg-prod/amv-prod-cad-assets/wp-content/uploads/2014/11/1971-Toyota-Celica-ST-101.jpg')
