@@ -25,6 +25,7 @@ public class OfferEntity {
     public UUID getId() {
         return id;
     }
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private EngineEnum engine;
@@ -53,7 +54,7 @@ public class OfferEntity {
 
     public OfferEntity setId(UUID id) {
         this.id = id;
-        return  this;
+        return this;
     }
 
     public EngineEnum getEngine() {
@@ -62,7 +63,7 @@ public class OfferEntity {
 
     public OfferEntity setEngine(EngineEnum engine) {
         this.engine = engine;
-        return  this;
+        return this;
     }
 
     public String getImageUrl() {
@@ -71,7 +72,7 @@ public class OfferEntity {
 
     public OfferEntity setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
-        return  this;
+        return this;
     }
 
     public int getMileage() {
@@ -80,7 +81,7 @@ public class OfferEntity {
 
     public OfferEntity setMileage(int mileage) {
         this.mileage = mileage;
-        return  this;
+        return this;
     }
 
     public BigDecimal getPrice() {
@@ -89,7 +90,7 @@ public class OfferEntity {
 
     public OfferEntity setPrice(BigDecimal price) {
         this.price = price;
-        return  this;
+        return this;
     }
 
     public TransmissionEnum getTransmission() {
@@ -98,7 +99,7 @@ public class OfferEntity {
 
     public OfferEntity setTransmission(TransmissionEnum transmission) {
         this.transmission = transmission;
-        return  this;
+        return this;
     }
 
     public int getYear() {
@@ -107,7 +108,7 @@ public class OfferEntity {
 
     public OfferEntity setYear(int year) {
         this.year = year;
-        return  this;
+        return this;
     }
 
     public ModelEntity getModel() {
@@ -116,7 +117,7 @@ public class OfferEntity {
 
     public OfferEntity setModel(ModelEntity model) {
         this.model = model;
-        return  this;
+        return this;
     }
 
     public UserEntity getSeller() {

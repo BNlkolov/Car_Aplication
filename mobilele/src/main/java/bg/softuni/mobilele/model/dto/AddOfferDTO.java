@@ -6,6 +6,7 @@ import bg.softuni.mobilele.model.enums.TransmissionEnum;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 public class AddOfferDTO {
 
@@ -17,6 +18,17 @@ public class AddOfferDTO {
 
     @NotNull
     private EngineEnum engine;
+
+    @Positive
+    @NotNull
+    private Integer price;
+
+    @Min(1950)
+    @NotNull
+    private Integer year;
+
+    @NotEmpty
+    private String description;
 
     @NotNull
    private TransmissionEnum transmission;
