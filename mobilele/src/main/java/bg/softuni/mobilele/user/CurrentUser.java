@@ -34,6 +34,7 @@ public class CurrentUser {
     }
 
     public void clear() {
+        email = null;
         loggedIn = false;
         name = null;
     }
