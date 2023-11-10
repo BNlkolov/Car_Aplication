@@ -7,7 +7,7 @@ import java.util.Collection;
 
 public class MobileUserDetails implements UserDetails {
 
-    private final String password;
+    private  final String password;
     private final String username;
     private final String firstName;
     private final String lastName;
@@ -26,19 +26,26 @@ public class MobileUserDetails implements UserDetails {
         this.authorities = authorities;
     }
 
+    public String getFirstName(){
+        return firstName;
+    }
+    public String getLastName(){
+        return lastName;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return username;
     }
 
     @Override
