@@ -76,4 +76,5 @@ public class UserRegisterDTO {
         this.email = email;
         return this;
     }
+
 }
