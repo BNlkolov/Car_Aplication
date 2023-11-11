@@ -1,6 +1,7 @@
 package bg.softuni.mobilele.web;
 
 import bg.softuni.mobilele.model.dto.AddOfferDTO;
+import bg.softuni.mobilele.model.dto.SearchOfferDTO;
 import bg.softuni.mobilele.service.BrandService;
 import bg.softuni.mobilele.service.OfferService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -58,6 +59,29 @@ public class OfferController {
         offerService.addOffer(addOfferModel,userDetails);
         return "redirect:/offers/all";
 
+    }
+    @GetMapping("/search")
+    public String searchQuery(@Valid SearchOfferDTO searchOfferDTO,
+                              BindingResult bindingResult,
+                              Model model) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("searchOfferModel", searchOfferDTO);
+            model.addAttribute(
+                    "org.springframework.validation.BindingResult.searchOfferModel",
+                    bindingResult);
+            return "offer-search";
+        }
+
+        if (!model.containsAttribute("searchOfferModel")) {
+            model.addAttribute("searchOfferModel", searchOfferDTO);
+        }
+
+        if (!searchOfferDTO.isEmpty()) {
+            model.addAttribute("offers", offerService.searchOffer(searchOfferDTO));
+        }
+
+        return "offer-search";
     }
 
 
