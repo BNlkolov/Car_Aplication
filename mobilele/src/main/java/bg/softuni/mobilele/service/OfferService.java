@@ -16,18 +16,15 @@ public class OfferService {
     private final OfferRepository offerRepository;
     private final UserRepository userRepository;
     private final ModelRepository modelRepository;
-    private final CurrentUser currentUser;
     private final OfferMapper offerMapper;
 
     public OfferService(OfferRepository offerRepository,
                         UserRepository userRepository,
                         ModelRepository modelRepository,
-                        CurrentUser currentUser,
                         OfferMapper offerMapper) {
         this.offerRepository = offerRepository;
         this.userRepository = userRepository;
         this.modelRepository = modelRepository;
-        this.currentUser = currentUser;
         this.offerMapper = offerMapper;
     }
 
@@ -37,11 +34,11 @@ public class OfferService {
                 addOfferDtoToOfferEntity(addOfferDTO);
 
         //TODO -> current user should be logged in
-        UserEntity seller = userRepository.findByEmail(currentUser.getName()).orElseThrow();
+       // UserEntity seller = userRepository.findByEmail(currentUser.getName()).orElseThrow();
         ModelEntity model = modelRepository.findById(addOfferDTO.getModelID()).orElseThrow();
 
         newOffer.setModel(model);
-        newOffer.setSeller(seller);
+        //newOffer.setSeller(seller);
 
         offerRepository.save(newOffer);
     }

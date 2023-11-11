@@ -54,6 +54,7 @@ public class SecurityConfig {
                         logout().
                 // which is the logout url
                         logoutUrl("/users/logout").
+                logoutSuccessUrl("/").
                 // invalidate the session and delete the cookies
                         invalidateHttpSession(true).
                 deleteCookies("JSESSIONID");
