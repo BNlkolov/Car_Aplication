@@ -32,6 +32,19 @@ public class MobileUserDetails implements UserDetails {
     public String getLastName(){
         return lastName;
     }
+    public String getFullName(){
+        StringBuilder fullName = new StringBuilder();
+        if (getFirstName() != null){
+            fullName.append(getFirstName());
+        }
+        if (getLastName() != null){
+            if (!fullName.isEmpty()){
+                fullName.append(" ");
+            }
+            fullName.append(lastName);
+        }
+        return fullName.toString();
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
