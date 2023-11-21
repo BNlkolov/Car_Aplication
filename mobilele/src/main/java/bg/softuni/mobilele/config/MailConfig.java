@@ -14,8 +14,8 @@ public class MailConfig {
 
     @Bean
     public JavaMailSender javaMailSender(
-            @Value("${ mail.host}") String mailHost,
-            @Value("${ mail.post}") Integer mailPort,
+            @Value("${mail.host}") String mailHost,
+            @Value("${mail.post}") Integer mailPort,
             @Value("${mail.username}") String username,
             @Value("${mail.passwor}") String password
     ) {
