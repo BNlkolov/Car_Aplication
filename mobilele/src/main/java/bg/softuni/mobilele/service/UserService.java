@@ -19,19 +19,19 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
     private final UserDetailsService userDetailsService;
-    private final EmailService emailService;
+    //private final EmailService emailService;
 
     public UserService(UserRepository userRepository,
                        PasswordEncoder passwordEncoder,
                        UserMapper userMapper,
-                       UserDetailsService userDetailsService,
-                       EmailService emailService) {
+                       UserDetailsService userDetailsService){
+                       //EmailService emailService ) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userMapper = userMapper;
 
         this.userDetailsService = userDetailsService;
-        this.emailService = emailService;
+        //this.emailService = emailService;
     }
 
     public void registerAndLogin(UserRegisterDTO userRegisterDTO) {
@@ -42,7 +42,7 @@ public class UserService {
 
         this.userRepository.save(newUser);
         login(newUser);
-        emailService.sendRegistrationEmail(newUser.getEmail(), newUser.getFirstName() + " " + newUser.getLastName());
+       // emailService.sendRegistrationEmail(newUser.getEmail(), newUser.getFirstName() + " " + newUser.getLastName());
 
     }
 
