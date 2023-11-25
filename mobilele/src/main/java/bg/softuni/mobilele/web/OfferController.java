@@ -12,13 +12,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-
+import java.util.UUID;
 
 
 @Controller
@@ -38,11 +36,11 @@ public class OfferController {
     public String allOffers(Model model,
                             @PageableDefault(
                                     sort = "price",
-                                    direction = Sort.Direction.ASC ,
+                                    direction = Sort.Direction.ASC,
                                     page = 0,
                                     size = 5)
                             Pageable pageable) {
-       model.addAttribute("offers",offerService.getAllOffers(pageable));
+        model.addAttribute("offers", offerService.getAllOffers(pageable));
 
         return "offers";
     }
@@ -52,7 +50,7 @@ public class OfferController {
         if (!model.containsAttribute("addOfferModel")) {
             model.addAttribute("addOfferModel", new AddOfferDTO());
         }
-        model.addAttribute("brands",brandService.getAllBrands());
+        model.addAttribute("brands", brandService.getAllBrands());
 
         return "offer-add";
     }
@@ -69,10 +67,11 @@ public class OfferController {
                     , bindingResult);
             return "redirect:/offers/add";
         }
-        offerService.addOffer(addOfferModel,userDetails);
+        offerService.addOffer(addOfferModel, userDetails);
         return "redirect:/offers/all";
 
     }
+
     @GetMapping("/search")
     public String searchQuery(@Valid SearchOfferDTO searchOfferDTO,
                               BindingResult bindingResult,
@@ -97,5 +96,14 @@ public class OfferController {
         return "offer-search";
     }
 
+    @ModelAttribute(name = "searchOfferModel")
+    private SearchOfferDTO initSearchModel() {
+        return new SearchOfferDTO();
+    }
 
+    @GetMapping("/{id}/details")
+    public String getOfferDetail(@PathVariable("id") UUID id) {
+        return "details";
+
+    }
 }
